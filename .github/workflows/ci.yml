@@ -27,6 +27,10 @@ jobs:
       # Connect your workspace by running "nx connect" and uncomment this line to enable task distribution
       # - run: npx nx start-nx-agents
 
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.x'
       
       # Cache node_modules
       - uses: actions/setup-node@v6
