@@ -1,0 +1,17 @@
+{
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
+  "packages": {
+    "src/libraries/ERP.SharedKernel": {
+      "release-type": "simple",
+      "component": "ERP.SharedKernel",
+      "package-name": "ERP.SharedKernel",
+      "extra-files": [
+        {
+          "type": "xml",
+          "path": "src/ERP.SharedKernel/ERP.SharedKernel.csproj",
+          "xpath": "//Project/PropertyGroup/*[self::Version or self::AssemblyVersion or self::FileVersion]"
+        }
+      ]
+    }
+  }
+}

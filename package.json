@@ -1,0 +1,10 @@
+{
+  "name": "test",
+  "version": "0.0.0",
+  "private": true,
+  "devDependencies": {
+    "@nx/dotnet": "23.2.0",
+    "@nx/workspace": "^23.2.0",
+    "nx": "23.2.0"
+  }
+}
