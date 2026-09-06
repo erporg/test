@@ -1,18 +1,20 @@
 <Solution>
-  <Folder Name="/src/" />
+  <Folder Name="/src/"/>
   <Folder Name="/src/apps/">
-    <Project Path="src/apps/ERP.ControlPlane.Tenants.MigrationWorker/ERP.ControlPlane.Tenants.MigrationWorker.csproj" />
-    <Project Path="src/apps/ERP.ControlPlane.Tenants.OutboxWorker/ERP.ControlPlane.Tenants.OutboxWorker.csproj" />
-    <Project Path="src/apps/ERP.ControlPlane.Tenants.WebApi/ERP.ControlPlane.Tenants.WebApi.csproj" />
+    <Project Path="src/apps/ERP.ControlPlane.Tenants.MigrationWorker/ERP.ControlPlane.Tenants.MigrationWorker.csproj"/>
+    <Project Path="src/apps/ERP.ControlPlane.Tenants.OutboxWorker/ERP.ControlPlane.Tenants.OutboxWorker.csproj"/>
+    <Project Path="src/apps/ERP.ControlPlane.Tenants.WebApi/ERP.ControlPlane.Tenants.WebApi.csproj"/>
   </Folder>
   <Folder Name="/src/aspire/">
-    <Project Path="src/aspire/ERP.ControlPlane.Tenants.AppHost/ERP.ControlPlane.Tenants.AppHost.csproj" />
-    <Project Path="src/aspire/ERP.ControlPlane.Tenants.ServiceDefaults/ERP.ControlPlane.Tenants.ServiceDefaults.csproj" />
+    <Project Path="src/aspire/ERP.ControlPlane.Tenants.AppHost/ERP.ControlPlane.Tenants.AppHost.csproj"/>
+    <Project
+      Path="src/aspire/ERP.ControlPlane.Tenants.ServiceDefaults/ERP.ControlPlane.Tenants.ServiceDefaults.csproj"/>
   </Folder>
   <Folder Name="/src/libraries/">
-    <Project Path="src/libraries/ERP.ControlPlane.Tenants.Application/ERP.ControlPlane.Tenants.Application.csproj" />
-    <Project Path="src/libraries/ERP.ControlPlane.Tenants.Domain/ERP.ControlPlane.Tenants.Domain.csproj" />
-    <Project Path="src/libraries/ERP.ControlPlane.Tenants.Infrastructure/ERP.ControlPlane.Tenants.Infrastructure.csproj" />
+    <Project Path="src/libraries/ERP.ControlPlane.Tenants.Application/ERP.ControlPlane.Tenants.Application.csproj"/>
+    <Project Path="src/libraries/ERP.ControlPlane.Tenants.Domain/ERP.ControlPlane.Tenants.Domain.csproj"/>
+    <Project
+      Path="src/libraries/ERP.ControlPlane.Tenants.Infrastructure/ERP.ControlPlane.Tenants.Infrastructure.csproj"/>
   </Folder>
-  <Folder Name="/tests/" />
+  <Folder Name="/tests/"/>
 </Solution>

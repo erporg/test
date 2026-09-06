@@ -13,7 +13,7 @@ public sealed class Tenant
     }
 
     public Guid Id { get; init; }
-    
+
     public string Name { get; private set; } = null!;
 
     public static Tenant Create(string name)

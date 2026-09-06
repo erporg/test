@@ -1,18 +1,18 @@
 <Project Sdk="Aspire.AppHost.Sdk/13.5.3">
 
-    <PropertyGroup>
-        <OutputType>Exe</OutputType>
-        <TargetFramework>net10.0</TargetFramework>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
-        <AspireUseCliBundle>true</AspireUseCliBundle>
-        <UserSecretsId>c477fcd9-1656-45a0-861e-c19c047e3ff2</UserSecretsId>
-    </PropertyGroup>
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AspireUseCliBundle>true</AspireUseCliBundle>
+    <UserSecretsId>c477fcd9-1656-45a0-861e-c19c047e3ff2</UserSecretsId>
+  </PropertyGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\..\apps\ERP.ControlPlane.Tenants.MigrationWorker\ERP.ControlPlane.Tenants.MigrationWorker.csproj" />
-      <ProjectReference Include="..\..\apps\ERP.ControlPlane.Tenants.OutboxWorker\ERP.ControlPlane.Tenants.OutboxWorker.csproj" />
-      <ProjectReference Include="..\..\apps\ERP.ControlPlane.Tenants.WebApi\ERP.ControlPlane.Tenants.WebApi.csproj" />
-    </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\apps\ERP.ControlPlane.Tenants.MigrationWorker\ERP.ControlPlane.Tenants.MigrationWorker.csproj"/>
+    <ProjectReference Include="..\..\apps\ERP.ControlPlane.Tenants.OutboxWorker\ERP.ControlPlane.Tenants.OutboxWorker.csproj"/>
+    <ProjectReference Include="..\..\apps\ERP.ControlPlane.Tenants.WebApi\ERP.ControlPlane.Tenants.WebApi.csproj"/>
+  </ItemGroup>
 
 </Project>

@@ -1,18 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk.Worker">
 
-    <PropertyGroup>
-        <TargetFramework>net10.0</TargetFramework>
-        <Nullable>enable</Nullable>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <UserSecretsId>dotnet-ERP.ControlPlane.Tenants.OutboxWorker-556fe49d-2f12-44f9-93b3-6703ede07483</UserSecretsId>
-    </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>dotnet-ERP.ControlPlane.Tenants.OutboxWorker-556fe49d-2f12-44f9-93b3-6703ede07483</UserSecretsId>
+  </PropertyGroup>
 
-    <ItemGroup>
-        <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.11"/>
-    </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.11"/>
+  </ItemGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\..\aspire\ERP.ControlPlane.Tenants.ServiceDefaults\ERP.ControlPlane.Tenants.ServiceDefaults.csproj" />
-      <ProjectReference Include="..\..\libraries\ERP.ControlPlane.Tenants.Infrastructure\ERP.ControlPlane.Tenants.Infrastructure.csproj" />
-    </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\aspire\ERP.ControlPlane.Tenants.ServiceDefaults\ERP.ControlPlane.Tenants.ServiceDefaults.csproj"/>
+    <ProjectReference Include="..\..\libraries\ERP.ControlPlane.Tenants.Infrastructure\ERP.ControlPlane.Tenants.Infrastructure.csproj"/>
+  </ItemGroup>
 </Project>

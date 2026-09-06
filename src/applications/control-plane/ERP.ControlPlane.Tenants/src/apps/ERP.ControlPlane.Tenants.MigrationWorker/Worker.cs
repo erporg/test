@@ -1,4 +1,7 @@
 ﻿using System.Diagnostics;
+using ERP.ControlPlane.Tenants.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace ERP.ControlPlane.Tenants.MigrationWorker;
 
@@ -7,17 +10,16 @@ public sealed class Worker(
     IHostApplicationLifetime hostApplicationLifetime) : BackgroundService
 {
     public const string ActivitySourceName = "Migrations";
-    private static readonly ActivitySource WorkerActivitySource = new(ActivitySourceName);
+    private static readonly ActivitySource s_activitySource = new(ActivitySourceName);
 
-    protected override async Task ExecuteAsync(
-        CancellationToken cancellationToken)
+    protected override async Task ExecuteAsync(CancellationToken cancellationToken)
     {
-        using var activity = WorkerActivitySource.StartActivity(nameof(ExecuteAsync), ActivityKind.Client);
+        using Activity? activity = s_activitySource.StartActivity(nameof(ExecuteAsync), ActivityKind.Client);
 
         try
         {
-            using var scope = serviceProvider.CreateScope();
-            var dbContext = scope.ServiceProvider.GetRequiredService<TicketContext>();
+            using IServiceScope scope = serviceProvider.CreateScope();
+            ApplicationDbContext dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
 
             await RunMigrationAsync(dbContext, cancellationToken);
             await SeedDataAsync(dbContext, cancellationToken);
@@ -31,36 +33,31 @@ public sealed class Worker(
         hostApplicationLifetime.StopApplication();
     }
 
-    private static async Task RunMigrationAsync(
-        TicketContext dbContext, CancellationToken cancellationToken)
+    private static async Task RunMigrationAsync(ApplicationDbContext dbContext, CancellationToken cancellationToken)
     {
-        var strategy = dbContext.Database.CreateExecutionStrategy();
-        await strategy.ExecuteAsync(async () =>
-        
-            await dbContext.Database.MigrateAsync(cancellationToken);
-        });
+        IExecutionStrategy strategy = dbContext.Database.CreateExecutionStrategy();
+        await strategy.ExecuteAsync(
+            (dbContext, cancellationToken),
+            static async (state, _) => { await state.dbContext.Database.MigrateAsync(state.cancellationToken); },
+            cancellationToken);
     }
 
-    private static async Task SeedDataAsync(
-        TicketContext dbContext, CancellationToken cancellationToken)
+    private static async Task SeedDataAsync(ApplicationDbContext dbContext, CancellationToken cancellationToken)
     {
-        SupportTicket firstTicket = new()
-        {
-            Title = "Test Ticket",
-            Description = "Default ticket, please ignore!",
-            Completed = true
-        };
+        // TODO: create models
 
-        var strategy = dbContext.Database.CreateExecutionStrategy();
-        await strategy.ExecuteAsync(async () =>
-        {
-            // Seed the database
-            await using var transaction = await dbContext.Database
-                .BeginTransactionAsync(cancellationToken);
+        IExecutionStrategy strategy = dbContext.Database.CreateExecutionStrategy();
+        await strategy.ExecuteAsync(
+            (dbContext, cancellationToken),
+            static async (state, token) =>
+            {
+                await using IDbContextTransaction transaction =
+                    await state.dbContext.Database.BeginTransactionAsync(state.cancellationToken);
 
-            await dbContext.Tickets.AddAsync(firstTicket, cancellationToken);
-            await dbContext.SaveChangesAsync(cancellationToken);
-            await transaction.CommitAsync(cancellationToken);
-        });
+                // TODO: add models
+                await state.dbContext.SaveChangesAsync(state.cancellationToken);
+                await transaction.CommitAsync(state.cancellationToken);
+            },
+            cancellationToken);
     }
 }

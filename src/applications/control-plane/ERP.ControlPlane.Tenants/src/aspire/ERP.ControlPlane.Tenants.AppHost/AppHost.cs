@@ -1,11 +1,14 @@
-var builder = DistributedApplication.CreateBuilder(args);
+using Projects;
 
-var migrationWorkerProject = builder.AddProject<Projects.ERP_ControlPlane_Tenants_MigrationWorker>("erp-controlplane-tenants-migration-worker");
+IDistributedApplicationBuilder builder = DistributedApplication.CreateBuilder(args);
 
-builder.AddProject<Projects.ERP_ControlPlane_Tenants_OutboxWorker>("erp-controlplane-tenants-outbox-worker")
+IResourceBuilder<ProjectResource> migrationWorkerProject =
+    builder.AddProject<ERP_ControlPlane_Tenants_MigrationWorker>("erp-controlplane-tenants-migration-worker");
+
+builder.AddProject<ERP_ControlPlane_Tenants_OutboxWorker>("erp-controlplane-tenants-outbox-worker")
     .WaitForCompletion(migrationWorkerProject);
 
-builder.AddProject<Projects.ERP_ControlPlane_Tenants_WebApi>("erp-controlplane-tenants-webapi")
+builder.AddProject<ERP_ControlPlane_Tenants_WebApi>("erp-controlplane-tenants-webapi")
     .WaitForCompletion(migrationWorkerProject);
 
 builder.Build().Run();
