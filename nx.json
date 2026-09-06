@@ -4,6 +4,17 @@
   "plugins": [
     "@nx/dotnet"
   ],
+  "targetDefaults": {
+    "build": {
+      "dependsOn": ["restore", "^build"]
+    },
+    "build:release": {
+      "dependsOn": ["restore", "^build:release"]
+    },
+    "test": {
+      "dependsOn": ["restore", "^build"]
+    }
+  },
   "namedInputs": {
     "default": [
       "{projectRoot}/**/*",
